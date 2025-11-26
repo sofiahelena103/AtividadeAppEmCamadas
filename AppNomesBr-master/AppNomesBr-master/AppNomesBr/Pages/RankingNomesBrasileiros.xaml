@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SOFIA HELENA PEREIRA -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppNomesBr.Pages.RankingNomesBrasileiros"
+             Title="Raking Nomes BR">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+
+            <!-- ALTERAÇÃO: Campo Cidade -->
+            <Entry x:Name="TxtCidade"
+                   Placeholder="Informe a cidade/município" />
+
+            <!-- ALTERAÇÃO: Campo Sexo -->
+            <Picker x:Name="PickerSexo"
+                    Title="Selecione o sexo">
+                <Picker.Items>
+                    <x:String>M</x:String>
+                    <x:String>F</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- ALTERAÇÃO: Botão Atualizar -->
+            <Button Text="Atualizar"
+                    Clicked="BtnAtualizar_Clicked" />
+
+            <CollectionView x:Name="GrdNomesBr"
+                            VerticalOptions="FillAndExpand">
+
+                <CollectionView.Header>
+                    <Grid Padding="5" BackgroundColor="LightBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <!-- ALTERAÇÃO: Coluna Cidade (opcional) -->
+                            <ColumnDefinition Width="*"/>
+                            <!-- ALTERAÇÃO: Coluna Sexo (opcional) -->
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Nomes" FontSize="18" FontAttributes="Bold" Grid.Column="0" />
+                        <Label Text="Ocorrências" FontSize="18" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Pos. Ranking" FontSize="18" FontAttributes="Bold" Grid.Column="2" />
+
+                        <!-- ALTERAÇÃO -->
+                        <Label Text="Cidade" FontSize="18" FontAttributes="Bold" Grid.Column="3" />
+                        <!-- ALTERAÇÃO -->
+                        <Label Text="Sexo" FontSize="18" FontAttributes="Bold" Grid.Column="4" />
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <!-- ALTERAÇÃO -->
+                                <ColumnDefinition Width="*"/>
+                                <!-- ALTERAÇÃO -->
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Nome}" FontSize="14" FontAttributes="Bold" Grid.Column="0" />
+                            <Label Text="{Binding Frequencia}" FontSize="14" FontAttributes="Bold" Grid.Column="1" />
+                            <Label Text="{Binding Ranking}" FontSize="14" FontAttributes="Bold" Grid.Column="2" />
+
+                            <!-- ALTERAÇÃO: Exibir Cidade -->
+                            <Label Text="{Binding City}" FontSize="14" Grid.Column="3" />
+
+                            <!-- ALTERAÇÃO: Exibir Sexo -->
+                            <Label Text="{Binding Gender}" FontSize="14" Grid.Column="4" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
